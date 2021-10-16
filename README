@@ -1,0 +1,30 @@
+Subset Construction: implementarea algoritmului de subset construction pentru
+convertirea unui Automat Finit Nedeterminist (AFN) la un Automat Finit
+Determinist (AFD).
+
+Am inceput obordarea prin a citi din fisier si a crea nfa-l, dupa care am
+implementat o funtie care transforma functia delta a nfa-ului in funtia delta a
+dfa-ului.Am pornit algoritmul de la starea initiala a dfa-ului va fi 0 impreuna
+cu ichiderea sa epsilon. Pentru a trece prin toate starile am folosit o coada
+de tuple(starea cu set-l de stari din nfa si starea rezultata din dfa), la fel
+am folosit si un dictionar pentru a mapa aceste 2 valori key - starea dfa si
+value - set-l de stari nfa. Atata timp cat exista elemente in coada, extrag si
+pentru toate caracterele din alfabet creez tranzitii corecte, ce contin si
+inchiderea epsilon. Daca o stare o gasesc deja creata adaug doar tranzitia,
+iar daca nu creez o noua stare pe care o adaug in dictionar si in coada pentru
+a fi analizata.
+
+Daca n-am corect parametrii ca argument afisez eroare, altfel execut programul.
+main - citeste din fisierul de input, creeaza nfa-l, il transforma in dfa si
+       scrie dfa-l in fisierul de output.
+read, write - scrie, citeste in fisiere conform formatului din cerinta.
+epsilon - calculeaza inchiderea epsilon, unde cu ajutorul unei cozi parcurg
+          toate starile care au tranzitii pe epsilon, si folosesc un veztor
+          pentru a sti daca am vizitat sau nu starile, in caz de am un ciclu
+          pe una sau mai multe stari prin tranzitii epsilon.
+searchState - returneaza starea din dfa pe baza dictionarului de stari sau -1
+              in caz ca nu exista starea cautata dupa set-l de stari nfa.
+setFinalStates - genereaza lista cu starile finale din dfa, pe baza
+                 dictionarului de stari set nfa - dfa, daca o stare din set nfa
+                 este o stare finala atunci starea dfa este stare finala.
+NFA_to_DFA - creeaza dfa-l, algoritmul propriu zis.
